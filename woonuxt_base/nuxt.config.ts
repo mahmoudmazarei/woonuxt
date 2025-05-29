@@ -1,5 +1,5 @@
-import { createResolver } from '@nuxt/kit';
-const { resolve } = createResolver(import.meta.url);
+import { createResolver } from '@nuxt/kit'
+const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-03-30',
@@ -29,17 +29,7 @@ export default defineNuxtConfig({
 
   components: [{ path: resolve('./app/components'), pathPrefix: false }],
 
-  modules: ['woonuxt-settings', 'nuxt-graphql-client', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n'],
-
-  'graphql-client': {
-    clients: {
-      default: {
-        host: process.env.GQL_HOST || 'http://localhost:4000/graphql',
-        corsOptions: { mode: 'cors', credentials: 'include' },
-        headers: { Origin: process.env.APP_HOST || 'http://localhost:3000' },
-      },
-    },
-  },
+  modules: ['woonuxt-settings', '@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxt/image', '@nuxtjs/i18n'],
 
   alias: {
     '#constants': resolve('./app/constants'),
@@ -49,14 +39,14 @@ export default defineNuxtConfig({
   hooks: {
     'pages:extend'(pages) {
       const addPage = (name: string, path: string, file: string) => {
-        pages.push({ name, path, file: resolve(`./app/pages/${file}`) });
-      };
+        pages.push({ name, path, file: resolve(`./app/pages/${file}`) })
+      }
 
-      addPage('product-page-pager', '/products/page/:pageNumber', 'products.vue');
-      addPage('product-category-page', '/product-category/:categorySlug', 'product-category/[slug].vue');
-      addPage('product-category-page-pager', '/product-category/:categorySlug/page/:pageNumber', 'product-category/[slug].vue');
-      addPage('order-received', '/checkout/order-received/:orderId', 'order-summary.vue');
-      addPage('order-summary', '/order-summary/:orderId', 'order-summary.vue');
+      addPage('product-page-pager', '/products/page/:pageNumber', 'products.vue')
+      addPage('product-category-page', '/product-category/:categorySlug', 'product-category/[slug].vue')
+      addPage('product-category-page-pager', '/product-category/:categorySlug/page/:pageNumber', 'product-category/[slug].vue')
+      addPage('order-received', '/checkout/order-received/:orderId', 'order-summary.vue')
+      addPage('order-summary', '/order-summary/:orderId', 'order-summary.vue')
     },
   },
 
@@ -82,4 +72,4 @@ export default defineNuxtConfig({
     strategy: 'no_prefix',
     restructureDir: false,
   },
-});
+})
